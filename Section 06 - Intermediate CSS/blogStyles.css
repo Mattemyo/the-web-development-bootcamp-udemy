@@ -1,0 +1,33 @@
+body {
+  width: 60%;
+  border: grey solid 6px;
+  margin: auto;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Roboto;
+  box-shadow: 0px 0px 2px 2px;
+  max-width: 600px;
+}
+blockquote {
+  border-left: blue solid 2px;
+  background: rgba(0, 0, 0, 0.02);
+  padding: 2px;
+  width: 200px;
+  text-align: left;
+  margin-left: 0px;
+}
+h4 {
+  color: blue;
+  text-align: left;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+}
+p {
+  text-align: left;
+}
+div {
+  border-bottom: solid grey 0.2px;
+  padding-top: 20px;
+}

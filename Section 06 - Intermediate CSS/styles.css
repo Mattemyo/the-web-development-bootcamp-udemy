@@ -1,0 +1,52 @@
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+    font-family: Orbitron;
+}
+
+body{
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 5em;
+}
+P{
+    font-size: 2em;
+}
+
+span{
+    font-size: 2em;
+}
+p{
+    font-weight: normal;
+}
+
+p{
+    line-height: 1.5;
+}
+
+h1{
+    text-align: right;
+}
+
+p{
+    text-align: center;
+}
+P{
+    text-decoration: underline;
+}
+h1{
+    text-decoration: line-through;
+}
+
+
+
+
+
+
+
+

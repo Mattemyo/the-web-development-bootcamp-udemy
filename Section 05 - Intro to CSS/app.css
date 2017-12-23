@@ -1,0 +1,13 @@
+h1{
+    color: rgba(0, 200, 100, 0.8);
+    border: purple 2px solid;
+}
+
+h4{
+    background: rgb(255, 100, 80 );
+}
+body{
+    /* background: url(https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg); */
+background: pink;
+}
+
