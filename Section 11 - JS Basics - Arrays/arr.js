@@ -26,18 +26,18 @@ function max(arr) {
 
 //own forEach
 
-function myForeach(arr, func) {
+function myForEach(arr, func) {
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
     func(element);
   }
 }
 const colors = ['yellow', 'blue', 'green'];
-myForeach(colors, function(color){
+myForEach(colors, function(color){
     console.log(color);
 });
 
-Array.prototype.myForeach = function(func){
+Array.prototype.myForEach = function(func){
     for(let i = 0; i < this.length; i++){
         func(this[i]);
     }
