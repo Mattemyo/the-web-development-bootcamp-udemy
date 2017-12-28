@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>jQuery Effects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        div {
+            width: 100px;
+            height: 100px;
+            background: teal;
+            float: left;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Dont fade</div>
+    <div>Please</div>
+    <div>Noooo</div>
+
+    <button>Click Me!</button>
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        $('button').on('click', function(){
+            $('div').slideToggle(1000, function(){
+                console.log('fade is done');
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

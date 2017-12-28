@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <h1>jQuery Events</h1>
+
+    <input type="text" name="" value="">
+
+    <button>Don't Click Me!</button>
+    <button>SrslyDon't Click Me!</button>
+    <button>Last One!</button>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        $('h1').on('click', function () {
+            $(this).css('color', 'purple');
+        });
+        $('input').on('keypress', function () {
+            console.log('keypress');
+        });
+
+        $('button').on('mouseenter', function () {
+            $(this).css('font-weight', 'bold');
+        });
+
+        $('button').on('mouseleave', function () {
+            $(this).css('font-weight', 'normal');
+        });
+    </script>
+</body>
+
+</html>
