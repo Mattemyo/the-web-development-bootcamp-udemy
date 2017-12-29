@@ -1,7 +1,8 @@
-
-
+<% include partials/header %>
 
 <h1>You fell in love with: <%= thing.charAt(0).toUpperCase()+thing.substr(1); %> </h1>
+
+
 
 <% if(thing.toLowerCase() === 'rusty'){ %>
 
@@ -15,3 +16,6 @@
 
 
 <p>P.S. this is the love.ejs file!</p>
+
+
+<% include partials/footer %>
