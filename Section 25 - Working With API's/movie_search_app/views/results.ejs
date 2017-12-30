@@ -1,0 +1,9 @@
+<h1>Here are the results</h1>
+
+<% data.Search.forEach((movie) => { %>
+
+    <li> <%= movie.Title %> </li>
+        <ul>
+           <li> <%= movie.Year %> </li>
+        </ul>
+<% }); %>
