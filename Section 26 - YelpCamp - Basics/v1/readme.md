@@ -13,3 +13,8 @@ Each Campground has:
 *Create header and footer partials
 *Bootstrap
 
+#Creating New Campgrounds
+*Setup new campground POST route
+*Add in body-parser
+*Setup rout to show form
+*Add basic unstyled form
