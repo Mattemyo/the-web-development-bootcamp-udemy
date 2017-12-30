@@ -18,3 +18,13 @@ Each Campground has:
 *Add in body-parser
 *Setup rout to show form
 *Add basic unstyled form
+
+#Style campgrounds page
+
+*Add a better header/title
+*Make campgrounds in grid display
+
+#Style Navbar and Form
+*Add navbar to all templates
+*Style the new campgrounds form
+
