@@ -28,3 +28,8 @@ Each Campground has:
 *Add navbar to all templates
 *Style the new campgrounds form
 
+#Show Page
+*Review RESTful routes
+*Add description to campground model
+*Show db.collection.drop()
+*Add a show route/template

@@ -21,6 +21,10 @@
                 <div class="caption">
                     <h4> <%= campground.name %> </h4>
                 </div>
+                <p>
+                    <!-- Add id to href of button -->
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                </p>
         </div>
 
     <% }); %>

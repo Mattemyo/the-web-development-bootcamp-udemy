@@ -13,7 +13,8 @@ app.set("view engine", "ejs");
 // Schema is like bluerprint
 const campgroundSchema = new mongoose.Schema({
   name: String,
-  image: String
+  image: String,
+  description: String
 });
 
 const Campground = mongoose.model("Campground", campgroundSchema);
@@ -22,7 +23,8 @@ const Campground = mongoose.model("Campground", campgroundSchema);
 //   {
 //     name: "Salmon Creek",
 //     image:
-//       "https://images.pexels.com/photos/45241/tent-camp-night-star-45241.jpeg?h=350&auto=compress&cs=tinysrgb"
+//       "https://images.pexels.com/photos/45241/tent-camp-night-star-45241.jpeg?h=350&auto=compress&cs=tinysrgb",
+//     description: "This is an awesome Creek! Great place"
 //   },
 //   (err, campgrounds) => {
 //     if (err) {
@@ -38,25 +40,28 @@ app.get("/", function(req, res) {
   res.render("landing");
 });
 // campgrounds page
+//INDEX, show all campgrounds
 app.get("/campgrounds", function(req, res) {
   //get all campgrounds from DB
   Campground.find({}, (err, allCampgrounds) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("campgrounds", { campgrounds: allCampgrounds });
+      res.render("index", { campgrounds: allCampgrounds });
     }
   });
 
   // res.render("campgrounds", { campgrounds: campgrounds });
 });
 // add new post route
+// CREATE - add new campground to db
 app.post("/campgrounds", function(req, res) {
   //add form data to campgrounds array
   Campground.create(
     {
       name: req.body.name,
-      image: req.body.image
+      image: req.body.image,
+      description: req.body.description
     },
     (err, newlyCreated) => {
       if (err) {
@@ -68,8 +73,22 @@ app.post("/campgrounds", function(req, res) {
   );
 });
 //page for adding new campgrounds
+// NEW - show form to create new
 app.get("/campgrounds/new", function(req, res) {
   res.render("new");
+});
+
+//must be after /new, otherwise, new will be considered id
+app.get("/campgrounds/:id", function(req, res) {
+  // find campgrounds with provided id
+  Campground.findById(req.params.id, (err, foundCampground) => {
+    if (err) {
+      console.log(err);
+    } else {
+      //render show template with that campground
+      res.render("show", { campground: foundCampground });
+    }
+  });
 });
 
 // port 3000
