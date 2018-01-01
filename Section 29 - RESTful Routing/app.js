@@ -38,7 +38,7 @@ const Blog = mongoose.model("Blog", blogSchema);
 app.get('/', function (req, res) {
   res.redirect('/blogs');
 });
-//index
+//index route
 app.get('/blogs', function (req, res) {
   Blog.find({}, function (err, blogs) {
     if (err) {
@@ -51,9 +51,33 @@ app.get('/blogs', function (req, res) {
   });
 });
 
+//NEW route
+app.get('/blogs/new', function (req, res) {
+  res.render('new');
+});
+//CREATE route
+app.post('/blogs', function (req, res) {
+  //create blog
+  Blog.create(req.body.blog, function (err, newBlog) {
+    if (err) {
+      res.render('new');
+    } else {
+      //then redirect
+      res.redirect('/blogs');
+    }
+  });
+});
 
-console.log("hej");
-
+//SHOW route
+app.get('/blogs/:id', function (req, res) {
+  Blog.findById(req.params.id, function (err, foundBlog) {
+    if(err){
+      res.redirect('/blogs');
+    } else{
+      res.render('show', {blog: foundBlog});
+    }
+  });
+});
 
 app.listen(3000, function () {
   console.log("App listening on port 3000!");
