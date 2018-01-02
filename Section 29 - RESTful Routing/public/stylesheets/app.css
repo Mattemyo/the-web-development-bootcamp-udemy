@@ -1,13 +1,13 @@
-i.icon{
-    font-size: 2em;
+i.icon {
+  font-size: 2em;
 }
-.container.main{
-    margin: 7.0em;
+.container.main {
+  margin: 7em;
 }
-#delete{
-    display: inline;
+#delete {
+  display: inline;
 }
 
-.extra a i{
-    font-size: 1em;
+.extra a i {
+  font-size: 1em;
 }
