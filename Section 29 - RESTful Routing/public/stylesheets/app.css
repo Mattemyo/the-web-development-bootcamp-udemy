@@ -7,3 +7,7 @@ i.icon{
 #delete{
     display: inline;
 }
+
+.extra a i{
+    font-size: 1em;
+}
