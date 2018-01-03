@@ -28,6 +28,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -67,6 +68,24 @@ app.post("/register", function(req, res) {
     }
   );
 });
+//LOGIN ROUTES
+//render login form
+app.get("/login", function(req, res) {
+  res.render("login");
+});
+
+//login logic
+//middleware is code before callback
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/secret",
+    failureRedirect: "/login"
+  }),
+  function(req, res) {
+    //empty for now
+  }
+);
 
 app.listen(3000, function() {
   console.log("App listening on port 3000!");
