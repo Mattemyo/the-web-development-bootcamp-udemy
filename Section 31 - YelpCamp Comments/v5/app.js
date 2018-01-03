@@ -6,11 +6,12 @@ const express = require("express"),
   seedDB = require("./seeds"),
   Comment = require("./models/comment");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v4");
+mongoose.connect("mongodb://localhost/yelp_camp_v5");
 app.use(bodyParser.urlencoded({ extended: true }));
 //Fill database with data
 seedDB();
-
+//serve public directory
+app.use(express.static(__dirname + "/public"));
 // shorten file names
 app.set("view engine", "ejs");
 
