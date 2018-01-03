@@ -41,7 +41,7 @@ app.get("/", function(req, res) {
   res.render("home");
 });
 //secret
-app.get("/secret", function(req, res) {
+app.get("/secret", isLoggedIn, function(req, res) {
   res.render("secret");
 });
 
@@ -86,6 +86,19 @@ app.post(
     //empty for now
   }
 );
+
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
+//don't let those who are not logged in view secret
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
 
 app.listen(3000, function() {
   console.log("App listening on port 3000!");
