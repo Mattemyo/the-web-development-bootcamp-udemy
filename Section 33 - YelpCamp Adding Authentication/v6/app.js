@@ -18,6 +18,19 @@ app.use(express.static(__dirname + "/public"));
 // shorten file names
 app.set("view engine", "ejs");
 
+//PASSPORT CONFIGURATION
+app.use(
+  require("express-session")({
+    secret: "this is my secret",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 // landing page
 app.get("/", function(req, res) {
   res.render("landing");
@@ -109,6 +122,28 @@ app.post("/campgrounds/:id/comments", function(req, res) {
     }
   });
 });
+//=====================
+// AUTH ROUTES
+//=====================
+//show register form
+app.get("/register", function(req, res) {
+  res.render("register");
+});
+
+//handle signup logic
+app.post("/register", function(req, res) {
+  const newUser = new User({ username: req.body.username });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      console.log(err);
+      return res.render("register");
+    }
+    passport.authenticate("local")(req, res, function() {
+      res.redirect("/campgrounds");
+    });
+  });
+});
+
 // port 3000
 app.listen(3000, function() {
   console.log("App listening on port 3000!");
