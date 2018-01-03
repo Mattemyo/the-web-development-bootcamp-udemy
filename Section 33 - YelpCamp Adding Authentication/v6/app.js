@@ -1,12 +1,15 @@
 const express = require("express"),
-  app = express(),
-  bodyParser = require("body-parser"),
-  mongoose = require("mongoose"),
-  Campground = require("./models/campground"),
   seedDB = require("./seeds"),
-  Comment = require("./models/comment");
+  passport = require("passport"),
+  mongoose = require("mongoose"),
+  LocalStrategy = require("passport-local"),
+  Comment = require("./models/comment"),
+  Campground = require("./models/campground"),
+  bodyParser = require("body-parser"),
+  User = require("./models/user"),
+  app = express();
 
-mongoose.connect("mongodb://localhost/yelp_camp_v5");
+mongoose.connect("mongodb://localhost/yelp_camp_v6");
 app.use(bodyParser.urlencoded({ extended: true }));
 //Fill database with data
 seedDB();
@@ -30,8 +33,6 @@ app.get("/campgrounds", function(req, res) {
       res.render("campgrounds/index", { campgrounds: allCampgrounds });
     }
   });
-
-  // res.render("campgrounds", { campgrounds: campgrounds });
 });
 // add new post route
 // CREATE - add new campground to db
@@ -98,7 +99,7 @@ app.post("/campgrounds/:id/comments", function(req, res) {
         if (err) {
           console.log(err);
         } else {
-          campground.comments.push(comment._id);
+          campground.comments.push(comment);
           campground.save();
           res.redirect(`/campgrounds/${campground._id}`);
         }
