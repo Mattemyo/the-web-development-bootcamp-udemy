@@ -9,6 +9,11 @@ const express = require("express"),
   User = require("./models/user"),
   app = express();
 
+//require routes
+const commentRoutes = require("./routes/comments"),
+  campgroundRoutes = require("./routes/campgrounds"),
+  indexRoutes = require("./routes/index");
+
 mongoose.connect("mongodb://localhost/yelp_camp_v7");
 app.use(bodyParser.urlencoded({ extended: true }));
 //Fill database with data
@@ -38,66 +43,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-// landing page
-app.get("/", function(req, res) {
-  res.render("landing");
-});
-// campgrounds page
-
-//page for adding new campgrounds
-// NEW - show form to create new
-app.get("/campgrounds/new", function(req, res) {
-  res.render("campgrounds/new");
-});
-
-//=====================
-// AUTH ROUTES
-//=====================
-//show register form
-app.get("/register", function(req, res) {
-  res.render("register");
-});
-
-//handle signup logic
-app.post("/register", function(req, res) {
-  const newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function(err, user) {
-    if (err) {
-      console.log(err);
-      return res.render("register");
-    }
-    passport.authenticate("local")(req, res, function() {
-      res.redirect("/campgrounds");
-    });
-  });
-});
-//show login form
-app.get("/login", function(req, res) {
-  res.render("login");
-});
-// login logic
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/campgrounds",
-    failureRedirect: "login"
-  }),
-  function(req, res) {
-    //callback function
-  }
-);
-//logic logout route
-app.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/campgrounds");
-});
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
+//use route files
+app.use("/", indexRoutes);
+app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
 
 // port 3000
 app.listen(3000, function() {
