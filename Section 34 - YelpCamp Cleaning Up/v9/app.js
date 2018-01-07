@@ -3,6 +3,7 @@ const express = require("express"),
   passport = require("passport"),
   mongoose = require("mongoose"),
   LocalStrategy = require("passport-local"),
+  methodOverride = require("method-override"),
   Comment = require("./models/comment"),
   Campground = require("./models/campground"),
   bodyParser = require("body-parser"),
@@ -24,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 // shorten file names
 app.set("view engine", "ejs");
+//override method
+app.use(methodOverride("_method"));
 
 //PASSPORT CONFIGURATION
 app.use(
@@ -45,10 +48,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get("/", function(req, res) {
+  res.send("home");
+});
 //use route files
-app.use("/", indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+// app.use("/", indexRoutes);
+// app.use("/campgrounds", campgroundRoutes);
+// app.use("/campgrounds/:id/comments", commentRoutes);
 
 // port 3000
 app.listen(3000, function() {

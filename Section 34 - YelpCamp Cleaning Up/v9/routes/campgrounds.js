@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const Campground = require("../models/campground");
 const Comment = require("../models/comment");
+const methodOverride = require("methodOverride");
 
 //INDEX, show all campgrounds
 router.get("/", function(req, res) {
@@ -43,6 +44,7 @@ router.post("/", isLoggedIn, function(req, res) {
 router.get("/new", isLoggedIn, function(req, res) {
   res.render("campgrounds/new");
 });
+
 
 // SHOW
 router.get("/:id", isLoggedIn, function(req, res) {
