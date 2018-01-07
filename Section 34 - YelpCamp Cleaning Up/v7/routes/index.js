@@ -4,7 +4,7 @@ const passport = require("passport");
 const User = require("../models/user");
 
 // root route
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
   res.render("landing");
 });
 

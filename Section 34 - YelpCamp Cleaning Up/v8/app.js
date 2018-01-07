@@ -14,10 +14,12 @@ const commentRoutes = require("./routes/comments"),
   campgroundRoutes = require("./routes/campgrounds"),
   indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v7");
+mongoose.connect("mongodb://localhost/yelp_camp_v9");
 app.use(bodyParser.urlencoded({ extended: true }));
 //Fill database with data
-seedDB();
+
+// seedDB();
+
 //serve public directory
 app.use(express.static(__dirname + "/public"));
 // shorten file names

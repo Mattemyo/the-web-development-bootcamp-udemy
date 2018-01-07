@@ -35,7 +35,7 @@ router.post("/", function(req, res) {
 });
 
 // NEW - show form to create new
-app.get("/campgrounds/new", function(req, res) {
+router.get("/new", function(req, res) {
   res.render("campgrounds/new");
 });
 
