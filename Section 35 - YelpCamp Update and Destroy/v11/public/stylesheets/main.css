@@ -1,0 +1,15 @@
+body {
+  background: purple;
+}
+.jumbotron {
+  margin-top: 20px;
+}
+.thumbnail img {
+  width: 100%;
+}
+.thumbail {
+  padding: 0;
+}
+.card{
+    margin-top: 30px;
+}
