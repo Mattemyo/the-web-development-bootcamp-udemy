@@ -2,6 +2,7 @@ const express = require("express"),
   seedDB = require("./seeds"),
   passport = require("passport"),
   mongoose = require("mongoose"),
+  flash = require("connect-flash"),
   LocalStrategy = require("passport-local"),
   methodOverride = require("method-override"),
   Comment = require("./models/comment"),
@@ -15,7 +16,7 @@ const commentRoutes = require("./routes/comments"),
   campgroundRoutes = require("./routes/campgrounds"),
   indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v9");
+mongoose.connect("mongodb://localhost/yelp_camp_v11");
 app.use(bodyParser.urlencoded({ extended: true }));
 //Fill database with data
 
@@ -26,6 +27,7 @@ app.use(express.static(__dirname + "/public"));
 // shorten file names
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
+app.use(flash());
 
 //PASSPORT CONFIGURATION
 app.use(
